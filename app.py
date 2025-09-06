@@ -12,6 +12,10 @@ from werkzeug.utils import secure_filename
 import google.generativeai as genai
 from fpdf import FPDF
 import re
+from transformers import pipeline
+
+# initialize text generation pipeline
+generator = pipeline("text2text-generation", model="t5-base")
 
 # Set API Key
 # os.environ["GOOGLE_API_KEY"] = "your api here"
@@ -69,6 +73,33 @@ def extract_text_from_file(file_path):
 
     return clean_text(text)
 
+
+def Question_mcqs_generator(input_text, num_questions):
+    prompt = f"""
+    You are an AI assistant helping the user generate multiple-choice questions (MCQs) based on the following text:
+    '{input_text}'
+    Please generate {num_questions} MCQs from the text. Each question should have:
+    - A clear question
+    - Four answer options (labeled A, B, C, D)
+    - The correct answer clearly indicate
+    Format:
+    ## MCQ
+    Question: [question]
+    A) [option A]
+    B) [option B]
+    C) [option C]
+    D) [option D]
+    Correct Answer: [correct option] 
+    
+    """
+
+    result = generator(prompt, max_length=512, do_sample=True)
+    return result[0]['generated_text']
+
+
+    # response = model.generate_content(prompt)
+    # return response
+
 # routes (end points)
 @app.route("/")
 def index():
@@ -77,23 +108,49 @@ def index():
 
 @app.route("/generate", methods=['POST'])
 def generate_mcqs():
+    # if 'file' not in request.files:
+    #     return "No file has chosen!"
+
+    # file = request.files['file']
+    # # num_questions = request.form['num_questions']
+    
+    # # anjali.pdf
+    # if file and allowed_file(file.filename):
+    #     filename = secure_filename(file.filename)
+    #     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    #     file.save(file_path)
+
+    #     # pdf, txt, docx
+    #     text = extract_text_from_file(file_path)
+        
+    #     if text:
+    #         num_questions = request.form['num_questions']
+            
+    #         mcqs = Question_mcqs_generator(text, num_questions)
+
+    #         print("\n\n\n", mcqs)
+
+    #     return render_template('index.html')
+
+
+        # //////////////////////////////////////
+
     if 'file' not in request.files:
-        return "No file has chosen!"
+        return "No file has been chosen!"
 
     file = request.files['file']
     num_questions = request.form['num_questions']
-    
-    # anjali.pdf
+
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
 
-        # pdf, txt, docx
         text = extract_text_from_file(file_path)
-        print(text)
+        mcqs = generate_mcqs_from_text(text, num_questions)
+        print(mcqs)
 
-        return render_template('index.html')
+        return render_template('index.html', mcqs=mcqs)
 
 
 # python main
