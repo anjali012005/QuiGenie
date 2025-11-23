@@ -1,101 +1,52 @@
-/* Reset some default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
 }
 
-/* Container for MCQs */
-.container {
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
-  max-width: 700px;
-  width: 100%;
-  text-align: left;
-  animation: fadeIn 1s ease-in-out;
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
 }
 
-.container h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #333;
-  text-align: center;
-}
-
-/* Individual MCQ styling */
 .mcq {
-  margin-bottom: 1.8rem;
-  padding: 1rem 1.2rem;
-  background-color: #f9f9f9;
-  border-left: 5px solid #6a11cb;
-  border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
+    background: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 85%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #4a90e2;
 }
 
-.mcq:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+.mcq pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    color: #444;
 }
 
-.question {
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-  color: #222;
-}
-
-.options {
-  margin-left: 1rem;
-}
-
-.option {
-  margin-bottom: 0.5rem;
-  padding: 0.4rem 0.6rem;
-  background: #e0e0e0;
-  border-radius: 5px;
-  transition: background 0.2s;
-}
-
-.option:hover {
-  background: #d0d0ff;
-}
-
-.correct-answer {
-  margin-top: 0.8rem;
-  font-weight: bold;
-  color: #2575fc;
-}
-
-/* Download links */
 a {
-  display: inline-block;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  text-decoration: none;
-  color: #fff;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  padding: 0.7rem 1.3rem;
-  border-radius: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 12px 20px;
+    background: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
 a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    background: #357ABD;
 }
 
-/* Smooth fade-in animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+    .mcq {
+        width: 95%;
+    }
 }

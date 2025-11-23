@@ -1,0 +1,23 @@
+## MCQ
+Q: What was the primary function of the "QuiGenie" project developed by Anjali?
+A] To conduct AI-powered mock interviews based on job levels.
+B] To build a MERN-based product for internal team members.
+C] To automatically generate MCQs from uploaded documents for teachers.
+D] To handle customer queries and manage product bidding.
+Correct Answer: C
+
+## MCQ
+Q: During her software development internship at Technoscien, what was a key quantifiable achievement for Anjali?
+A] Improved customer query resolution time by 20%.
+B] Reduced release cycles by 50%.
+C] Reduced exam paper preparation time by 70%.
+D] Reduced API latency by 25%.
+Correct Answer: D
+
+## MCQ
+Q: Which of the following technologies was specifically listed in the tech stack for the "MockInter" project?
+A] Python and Flask
+B] Google Gemini API
+C] Next.js and OpenAI API
+D] MongoDB and Express.js
+Correct Answer: C

@@ -1,40 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+    <title>MCQ Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
 </head>
-
 <body>
-    <div class="container">
-        <h1>Generated MCQs</h1>
 
-        {% for mcq in mcqs.split("## MCQ") %}
-        {% if mcq.strip() %}
-        <div class="mcq">
-            <div class="question">{{ mcq.split()( "A]" )[0].strip() }}</div>
+<h1>Generated MCQs</h1>
 
-            <div class="options">
-                <div class="option">{{ mcq.split()( "A]" )[1].split("B]" )[0].strip() }}</div>
-                <div class="option">{{ mcq.split()( "B]" )[1].split("C]" )[0].strip() }}</div>
-                <div class="option">{{ mcq.split()( "C]" )[1].split("D]" )[0].strip() }}</div>
-                <div class="option">{{ mcq.split()( "D]" )[1].split("Correct Answer:")[0].strip() }}</div>
-            </div>
-
-            <div class="correct-answer">
-                Correct Answer: {{ mcq.split("Correct Answer: ")[1].strip() }}
-            </div>
-        </div>
-
-        {% endif %}
-        {% endfor %}
-
-        <a href="/download/{{txt_filename}}">Download as TXT</a>
-        <a href="/download/{{pdf_filename}}">Download as PDF</a>
+{% for block in mcqs.split("## MCQ") %}
+    {% if block.strip() %}
+    <div class="mcq">
+        <pre>{{ block }}</pre>
     </div>
-</body>
+    {% endif %}
+{% endfor %}
 
+<br><br>
+
+<a href="/download/{{txt_filename}}">Download TXT</a><br>
+<a href="/download/{{pdf_filename}}">Download PDF</a>
+
+</body>
 </html>
