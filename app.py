@@ -174,4 +174,8 @@ if __name__ == "__main__":
     os.makedirs(app.config["RESULTS_FOLDER"], exist_ok=True)
 
     print("\n🚀 Flask server running at http://127.0.0.1:5000\n")
-    app.run(debug=True)
+
+    # app.run(debug=True)
+    if __name__ == "__main__":
+        app.run()
+
